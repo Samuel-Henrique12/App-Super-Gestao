@@ -1,52 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title>Super Gestão - Contato</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ asset('css/estilo_basico.css') }}">
-</head>
+@extends ('site.layouts.basico')
 
-<body>
-<div class="topo">
+@section('titulo', $titulo)
+@section('conteudo')
 
-    <div class="logo">
-        <img src="img/logo.png">
-    </div>
-
-    <div class="menu">
-        <ul>
-            <li><a href="{{ route('site.index') }}">Principal</a></li>
-            <li><a href="{{ route('site.sobrenos') }}">Sobre Nós</a></li>
-            <li><a href="{{ route('site.contato') }}">Contato</a></li>
-        </ul>
-    </div>
-</div>
-
-<div class="conteudo-pagina">
+    <div class="conteudo-pagina">
     <div class="titulo-pagina">
         <h1>Entre em contato conosco</h1>
     </div>
 
     <div class="informacao-pagina">
         <div class="contato-principal">
-            <form>
-                <input type="text" placeholder="Nome" class="borda-preta">
-                <br>
-                <input type="text" placeholder="Telefone" class="borda-preta">
-                <br>
-                <input type="text" placeholder="E-mail" class="borda-preta">
-                <br>
-                <select class="borda-preta">
-                    <option value="">Qual o motivo do contato?</option>
-                    <option value="">Dúvida</option>
-                    <option value="">Elogio</option>
-                    <option value="">Reclamação</option>
-                </select>
-                <br>
-                <textarea class="borda-preta">Preencha aqui a sua mensagem</textarea>
-                <br>
-                <button type="submit" class="borda-preta">ENVIAR</button>
-            </form>
+            @component('site.layouts._components.form_contato', ['classe' => 'borda-preta'])
+                <P>A nossa equipe analisara sua mensagem</P>
+                <P>Nosso tempo médio de resposta é de 48 horas</P>
+                @endcomponent
         </div>
     </div>
 </div>
@@ -69,5 +36,4 @@
         <img src="{{ asset('img/mapa.png') }}">
     </div>
 </div>
-</body>
-</html>
+@endsection
