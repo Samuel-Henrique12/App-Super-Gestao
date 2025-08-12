@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SiteContato extends Model
 {
     use HasFactory;
+    protected $fillable = ['nome', 'telefone', 'email', 'motivo_contato', 'mensagem'];
     //protected $table = 'site_contato';
     // protected $fillable = ['nome', 'site', 'uf', 'email', 'mensagem'];
 }
