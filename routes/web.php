@@ -9,6 +9,7 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,9 @@ Route::get('/', [PrincipalController::class, 'principal'])->name('site.index')->
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato.salvar');
-Route::get('/login', function() {return "Login";})->name('site.login');
+
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/clientes', [ClientesController::class, 'clientes'])
