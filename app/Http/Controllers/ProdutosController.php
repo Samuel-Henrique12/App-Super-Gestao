@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class ProdutosController extends Controller
 {
     public function produtos() {
-        return view('app.index');
+        return view('site.sobre-nos', ['titulo' => 'Sobre Nós']);
     }
 }
