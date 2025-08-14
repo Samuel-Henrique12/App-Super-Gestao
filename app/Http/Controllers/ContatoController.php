@@ -32,8 +32,8 @@ class ContatoController extends Controller
             'nome.unique' => 'O nome informado já está em uso',
             'telefone.required' => 'O campo telefone precisa ser preenchido',
             'email.required' => 'O campo email precisa ser preenchido',
-            'email.email' => 'O campo email precisa de um dominio de email',
-            'motivo_contatos_id.required' => 'O campo precisa ser informado',
+            'email.email' => 'O campo de email precisa de um dominio de email',
+            'motivo_contatos_id.required' => 'O campo de motivos precisa ser informado',
             'mensagem.required' => 'O campo mensagem precisa ser informado',
             'mensagem.max' => 'Maximo de caracteres excedido'
         ]
