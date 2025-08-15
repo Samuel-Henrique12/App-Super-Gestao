@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -40,24 +41,23 @@ class LoginController extends Controller
         $email = $request->get('usuario');
         $password = $request->get('senha');
 
-        $user = new User();
+        $usuario = User::where('email', $email)->first();
 
-        $usuario = $user->where('email', $email)
-            ->where('password', $password)
-            ->get()->first();
-
-        if (isset($usuario->name)) {
+        if ($usuario && Hash::check($password, $usuario->password)) {
             session_start();
-            $_SESSION['nome'] = $usuario->nome;
+            $_SESSION['nome'] = $usuario->name;
             $_SESSION['email'] = $usuario->email;
 
+            return redirect()->route('app.cliente');
         } else {
             return redirect()->route('site.login', ['erro' => 1]);
         }
     }
 
     public function sair() {
-        echo "saiu";
+        return
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
 
