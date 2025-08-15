@@ -137,7 +137,6 @@
                         <a href="https://www.instagram.com/distribuidoragama/" class="hover:opacity-75"><img src="{{ asset('img/instagram.png') }}" alt="Instagram" class="h-8"></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>
