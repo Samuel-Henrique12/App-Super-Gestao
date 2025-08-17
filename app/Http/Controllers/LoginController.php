@@ -10,6 +10,7 @@ class LoginController extends Controller
 {
     public function index(Request $request)
     {
+
         $erro = '';
 
         if ($request->get('erro') == 1) {
