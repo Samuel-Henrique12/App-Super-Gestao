@@ -51,11 +51,11 @@
                         <input id="remember" name="remember" type="checkbox" class="h-4 w-4 rounded text-primary focus:ring-primary border-gray-300 dark:border-gray-600 dark:hover:-bg-secondary">
                         <label for="remember" class="ml-2 block text-gray-900 dark:text-gray-200">Lembrar-me</label>
                     </div>
-                    <a href="site.recuperacao" class="font-medium text-primary hover:text-primaryDark dark:text-secondary dark:hover:text-orange-600">Esqueceu sua senha?</a>
+                    <a href="{{ route('password.request') }}" class="font-medium text-primary hover:text-primaryDark dark:text-secondary dark:hover:text-orange-600">Esqueceu sua senha?</a>
                 </div>
 
                 {{-- Acessar e Cadastro --}}
-                <button type="submit" class="w-full py-3 px-6 font-semibold text-white bg-primary rounded-md hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 transition-colors dark:bg-secondary dark:hover:bg-orange-600">
+                <button type="submit" class="w-full py-3 px-6 font-semibold text-white bg-primary rounded-md hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 transition-colors dark:bg-secondary dark:hover:bg-orange-600 dark:focus:ring-secondary transition">
                     Acessar
                 </button>
             </form>

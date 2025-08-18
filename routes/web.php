@@ -1,16 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PrincipalController;
-use App\Http\Controllers\SobreNosController;
-use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
-use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PrincipalController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\RecuperacaoController;
+use App\Http\Controllers\SobreNosController;
+use App\Http\Controllers\Auth\EsqueceuSenhaController;
+use App\Http\Controllers\Auth\RecuperacaoController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +33,10 @@ Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.logi
 Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 Route::get('/registro', [RegistroController::class, 'index'])->name('site.registro');
 Route::post('/registro', [RegistroController::class, 'cadastro'])->name('site.registro');
-Route::get('/esqueceu-senha', [RecuperacaoController::class, 'index'])->name('site.recuperacao');
-Route::post('/redefinir-senha', [RecuperacaoController::class, 'recuperacao'])->name('site.recuperacao');
+Route::get('esqueceu-senha', [EsqueceuSenhaController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('esqueceu-senha', [EsqueceuSenhaController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('redefinir-senha/{token}', [RecuperacaoController::class, 'showResetForm'])->name('password.reset');
+Route::post('redefinir-senha', [RecuperacaoController::class, 'reset'])->name('password.update');
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])
