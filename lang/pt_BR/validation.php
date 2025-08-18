@@ -193,4 +193,4 @@ return [
         'first_name' => 'primeiro nome',
         'last_name' => 'sobrenome',
         'password' => 'senha',
-        'password_confirmation' => 'confirmação
+        'password_confirmation' => 'confirmação']];
