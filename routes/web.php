@@ -9,6 +9,8 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\RecuperacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,10 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contat
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contato.salvar');
 Route::get('/login/{erro?}', [LoginController::class, 'index'])->name('site.login');
 Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
+Route::get('/registro', [RegistroController::class, 'index'])->name('site.registro');
+Route::post('/registro', [RegistroController::class, 'cadastro'])->name('site.registro');
+Route::get('/esqueceu-senha', [RecuperacaoController::class, 'index'])->name('site.recuperacao');
+Route::post('/redefinir-senha', [RecuperacaoController::class, 'recuperacao'])->name('site.recuperacao');
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])
