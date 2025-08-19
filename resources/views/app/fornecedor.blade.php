@@ -4,6 +4,12 @@
 
 @section('conteudo')
 
+    @if(session('sucesso'))
+        <div class="mb-6 p-4 bg-green-100 text-green-700 rounded-md text-sm" role="alert">
+            {{ session('sucesso') }}
+        </div>
+    @endif
+
     <div class="space-y-8">
         <div class="bg-white dark:bg-gray-900/50 p-8 rounded-2xl shadow-lg text-center">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">
@@ -12,8 +18,9 @@
         </div>
 
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <form action="#" method="GET" class="w-full sm:w-auto flex gap-2">
-                <input type="text" name="pesquisa" placeholder="Pesquisar por nome, site, etc."
+            <form action="{{ route('app.fornecedor') }}" method="GET" class="w-full sm:w-auto flex gap-2">
+                <input type="text" name="pesquisa" placeholder="Pesquisar"
+                       value="{{ request('pesquisa') }}"
                        class="w-full sm:w-64 p-3 rounded-md bg-gray-200 dark:bg-gray-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-primary transition dark:focus:ring-secondary transition">
                 <button type="submit" class="py-3 px-5 font-semibold text-white bg-primary rounded-md hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-800 transition-colors dark:bg-secondary dark:hover:bg-orange-600 dark:focus:ring-orange-600">
                     Buscar
@@ -55,15 +62,19 @@
                                 {{ $fornecedor->email }}
                             </td>
                             <td class="px-6 py-4 flex justify-center items-center gap-3">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Excluir</a>
+                                <a href="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}" class="font-medium text-blue-600 hover:text-blue-700">Editar</a>
+                                <form id="form_{{ $fornecedor->id }}" method="post" action="{{ route('app.fornecedor.excluir', ['id' => $fornecedor->id]) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a href="#" onclick="document.getElementById('form_{{ $fornecedor->id }}').submit()" class="font-medium text-red-600 hover:text-red-700">Excluir</a>
+                                </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
-                                Nenhum fornecedor cadastrado ainda.
-                                <a href="{{ route('app.fornecedor.adicionar') }}" class="text-primary hover:underline font-semibold">Clique aqui para adicionar o primeiro!</a>
+                                Nenhum fornecedor cadastrado
+                                <a href="{{ route('app.fornecedor.adicionar') }}" class="text-primary hover:text-primaryDark font-semibold dark:text-secondary dark:hover:text-orange-600">Clique aqui para adicionar!</a>
                             </td>
                         </tr>
                     @endforelse
@@ -71,6 +82,10 @@
                 </table>
             </div>
         </div>
+
+    <div class="mt-6">
+        {{ $fornecedores->appends(request()->query())->links() }}
+    </div>
     </div>
 
 @endsection

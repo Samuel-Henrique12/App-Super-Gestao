@@ -13,17 +13,7 @@ use App\Http\Controllers\Auth\EsqueceuSenhaController;
 use App\Http\Controllers\Auth\RecuperacaoController;
 use Illuminate\Support\Facades\Route;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// SITE
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index')->middleware('log.acesso');
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
@@ -38,6 +28,8 @@ Route::post('esqueceu-senha', [EsqueceuSenhaController::class, 'sendResetLinkEma
 Route::get('redefinir-senha/{token}', [RecuperacaoController::class, 'showResetForm'])->name('password.reset');
 Route::post('redefinir-senha', [RecuperacaoController::class, 'reset'])->name('password.update');
 
+// APP
+
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])
         ->name('app.home');
@@ -51,11 +43,17 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
         ->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/adicionar', [FornecedorController::class, 'guardar'])
         ->name('app.fornecedor.guardar');
+    Route::get('/fornecedor/editar/{id}', [FornecedorController::class, 'editar'])
+        ->name('app.fornecedor.editar');
+    Route::put('/fornecedor/editar/{id}', [FornecedorController::class, 'update'])
+        ->name('app.fornecedor.update');
+    Route::delete('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])
+        ->name('app.fornecedor.excluir');
     Route::get('/produto', [ProdutoController::class, 'index'])
         ->name('app.produto');
 });
 
 Route::fallback(function() {
-    echo 'A rota não existe. <a href="'.route('site.index').'">Clique aqui </a> para ir pra página inicial';
+    echo 'A rota não existe. <a href="'.route('site.index').'">Clique aqui para ir pra página inicial </a>';
 
 });
