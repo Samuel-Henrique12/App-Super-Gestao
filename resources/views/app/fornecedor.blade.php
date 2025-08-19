@@ -4,12 +4,6 @@
 
 @section('conteudo')
 
-    @if(session('sucesso'))
-        <div class="mb-6 p-4 bg-green-100 text-green-700 rounded-md text-sm" role="alert">
-            {{ session('sucesso') }}
-        </div>
-    @endif
-
     <div class="space-y-8">
         <div class="bg-white dark:bg-gray-900/50 p-8 rounded-2xl shadow-lg text-center">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">
@@ -62,12 +56,8 @@
                                 {{ $fornecedor->email }}
                             </td>
                             <td class="px-6 py-4 flex justify-center items-center gap-3">
-                                <a href="{{ route('app.fornecedor.editar', ['id' => $fornecedor->id]) }}" class="font-medium text-blue-600 hover:text-blue-700">Editar</a>
-                                <form id="form_{{ $fornecedor->id }}" method="post" action="{{ route('app.fornecedor.excluir', ['id' => $fornecedor->id]) }}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <a href="#" onclick="document.getElementById('form_{{ $fornecedor->id }}').submit()" class="font-medium text-red-600 hover:text-red-700">Excluir</a>
-                                </form>
+                                <a href="#" class="font-medium text-blue-600 hover:text-blue-700">Editar</a>
+                                <a href="#" class="font-medium text-red-600 hover:text-red-700">Excluir</a>
                             </td>
                         </tr>
                     @empty

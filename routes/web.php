@@ -51,6 +51,17 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
         ->name('app.fornecedor.excluir');
     Route::get('/produto', [ProdutoController::class, 'index'])
         ->name('app.produto');
+    Route::get('/produto/adicionar', [ProdutoController::class, 'adicionar'])
+        ->name('app.produto.adicionar');
+    Route::post('/produto/adicionar', [ProdutoController::class, 'guardar'])
+        ->name('app.produto.guardar');
+    Route::get('/produto/editar/{id}', [ProdutoController::class, 'editar'])
+        ->name('app.produto.editar');
+    Route::put('/produto/editar/{id}', [ProdutoController::class, 'update'])
+        ->name('app.produto.update');
+    Route::delete('/produto/excluir/{id}', [ProdutoController::class, 'excluir'])
+        ->name('app.produto.excluir');
+
 });
 
 Route::fallback(function() {
