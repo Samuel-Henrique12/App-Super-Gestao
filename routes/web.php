@@ -34,6 +34,11 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
     Route::get('/home', [HomeController::class, 'index'])->name('app.home');
     Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
     Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/cliente/adicionar',[ClienteController::class, 'adicionar'])->name('app.cliente.adicionar');
+    Route::post('/cliente/adicionar',[ClienteController::class, 'guardar'])->name('app.cliente.guardar');
+    Route::get('/cliente/editar/{cliente}',[ClienteController::class, 'editar'])->name('app.cliente.editar');
+    Route::put('/cliente/editar/{cliente}',[ClienteController::class, 'atualizar'])->name('app.cliente.atualizar');
+    Route::delete('/cliente/excluir/{cliente}', [ClienteController::class, 'destroy'])->name('app.cliente.excluir');
     Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
     Route::get('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/adicionar', [FornecedorController::class, 'guardar'])->name('app.fornecedor.guardar');
