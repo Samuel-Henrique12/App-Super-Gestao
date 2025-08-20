@@ -31,36 +31,21 @@ Route::post('redefinir-senha', [RecuperacaoController::class, 'reset'])->name('p
 // APP
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function() {
-    Route::get('/home', [HomeController::class, 'index'])
-        ->name('app.home');
-    Route::get('/sair', [LoginController::class, 'sair'])
-        ->name('app.sair');
-    Route::get('/cliente', [ClienteController::class, 'index'])
-        ->name('app.cliente');
-    Route::get('/fornecedor', [FornecedorController::class, 'index'])
-        ->name('app.fornecedor');
-    Route::get('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])
-        ->name('app.fornecedor.adicionar');
-    Route::post('/fornecedor/adicionar', [FornecedorController::class, 'guardar'])
-        ->name('app.fornecedor.guardar');
-    Route::get('/fornecedor/editar/{id}', [FornecedorController::class, 'editar'])
-        ->name('app.fornecedor.editar');
-    Route::put('/fornecedor/editar/{id}', [FornecedorController::class, 'update'])
-        ->name('app.fornecedor.update');
-    Route::delete('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])
-        ->name('app.fornecedor.excluir');
-    Route::get('/produto', [ProdutoController::class, 'index'])
-        ->name('app.produto');
-    Route::get('/produto/adicionar', [ProdutoController::class, 'adicionar'])
-        ->name('app.produto.adicionar');
-    Route::post('/produto/adicionar', [ProdutoController::class, 'guardar'])
-        ->name('app.produto.guardar');
-    Route::get('/produto/editar/{id}', [ProdutoController::class, 'editar'])
-        ->name('app.produto.editar');
-    Route::put('/produto/editar/{id}', [ProdutoController::class, 'update'])
-        ->name('app.produto.update');
-    Route::delete('/produto/excluir/{id}', [ProdutoController::class, 'excluir'])
-        ->name('app.produto.excluir');
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+    Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+    Route::post('/fornecedor/adicionar', [FornecedorController::class, 'guardar'])->name('app.fornecedor.guardar');
+    Route::get('/fornecedor/editar/{id}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
+    Route::put('/fornecedor/editar/{id}', [FornecedorController::class, 'update'])->name('app.fornecedor.update');
+    Route::delete('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
+    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
+    Route::get('/produto/adicionar', [ProdutoController::class, 'adicionar'])->name('app.produto.adicionar');
+    Route::post('/produto/adicionar', [ProdutoController::class, 'guardar'])->name('app.produto.guardar');
+    Route::get('/produto/editar/{id}', [ProdutoController::class, 'editar'])->name('app.produto.editar');
+    Route::put('/produto/editar/{id}', [ProdutoController::class, 'update'])->name('app.produto.update');
+    Route::delete('/produto/excluir/{id}', [ProdutoController::class, 'excluir'])->name('app.produto.excluir');
 
 });
 
